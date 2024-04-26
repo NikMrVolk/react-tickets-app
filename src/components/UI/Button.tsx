@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { cn } from '../../../utils/libs'
+import { cn } from '../../utils/libs'
 
 const styles = {
     button: 'w-full h-16 rounded-md cursor-pointer font-semibold shadow-md flex items-center justify-center transition-all duration-200 enabled:active:translate-y-0.5',
