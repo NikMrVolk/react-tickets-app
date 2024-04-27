@@ -1,16 +1,10 @@
 import { Layout } from './components/layout/Layout'
-import { Button } from './components/UI/Button/Button'
-import { tickets } from './utils/data'
+import { TicketsSearch } from './modules/tickets_search/view'
 
-function App() {
-    console.log('@', tickets)
-
-    return (
-        <Layout>
-            <div className="text-3xl font-bold">Hello world!</div>
-            <Button>Button</Button>
-        </Layout>
-    )
-}
+const App = () => (
+    <Layout>
+        <TicketsSearch />
+    </Layout>
+)
 
 export default App
