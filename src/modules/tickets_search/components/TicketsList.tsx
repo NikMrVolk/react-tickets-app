@@ -1,9 +1,17 @@
 import { FlightTicket } from '../types'
 
+import TicketElement from './TicketElement'
+
 interface TicketsListProps {
     tickets?: FlightTicket[]
 }
 
 export const TicketsList = ({ tickets }: TicketsListProps) => (
-    <ul className="flex flex-col gap-6">{tickets?.map((el, index) => <li key={index + el.origin}>123</li>)}</ul>
+    <ul className="flex flex-col gap-6">
+        {tickets?.length ? (
+            tickets?.map((el, index) => <TicketElement key={index + el.origin} ticket={el} />)
+        ) : (
+            <div className="text-center">Ничего не найдено</div>
+        )}
+    </ul>
 )

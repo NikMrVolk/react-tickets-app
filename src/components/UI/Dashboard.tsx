@@ -7,5 +7,5 @@ interface DashboardProps {
 }
 
 export const Dashboard = ({ children, Component = 'section', className = '' }: DashboardProps) => (
-    <Component className={cn('rounded-md bg-white p-10 shadow-sm', className)}>{children}</Component>
+    <Component className={cn('rounded-md bg-white p-6 shadow-sm', className)}>{children}</Component>
 )
