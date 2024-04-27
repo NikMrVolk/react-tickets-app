@@ -4,7 +4,7 @@ import { tickets } from '../constants'
 import { FlightTicket } from '../types'
 
 export const useView = () => {
-    const [data, setData] = useState<FlightTicket[]>(tickets)
+    const [data, setData] = useState<FlightTicket[]>([...tickets].sort((a, b) => a.price - b.price))
 
     const handleFilterTickets = () => {
         setData(tickets)
