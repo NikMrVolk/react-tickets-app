@@ -7,22 +7,24 @@ interface InputProps extends React.ComponentProps<'input'> {
         label?: string
         input?: string
     }
-    children?: ReactNode
+    externalId?: string
+    label?: ReactNode
 }
 
 export const Input = React.forwardRef<HTMLInputElement, InputProps>(
-    ({ classes = { label: '', input: '' }, children, ...props }, ref) => {
-        const id = useId()
+    ({ classes = { label: '', input: '' }, label, externalId, ...props }, ref) => {
+        const internalId = useId()
+        const id = externalId ?? internalId
 
         return (
             <>
-                {children && (
+                {label && (
                     <label className={cn(classes.label)} htmlFor={id}>
-                        {children}
+                        {label}
                     </label>
                 )}
 
-                <input className={cn(classes.input)} id={id} {...props} ref={ref} />
+                <input className={cn('cursor-pointer', classes.input)} id={id} {...props} ref={ref} />
             </>
         )
     },
