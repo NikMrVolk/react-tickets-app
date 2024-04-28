@@ -8,6 +8,8 @@ export default {
                 'btn-standard': '#FF4D00',
                 'btn-standard-hover': '#FF6700',
                 'btn-standard-text': '#FFF1E7',
+                blue: '#008BF9',
+                'blue-hover': '#EEFCFF',
                 'ticket-plane-line': '#CBD0D1',
             },
             spacing: {
