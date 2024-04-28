@@ -7,7 +7,7 @@ export default function FilterWrapperElement({ title, children }: FilterWrapperE
     return (
         <div className="flex flex-col gap-4">
             <p>{title}</p>
-            {children}
+            <div>{children}</div>
         </div>
     )
 }
