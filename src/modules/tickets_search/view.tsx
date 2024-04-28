@@ -1,7 +1,7 @@
 import { Dashboard } from '../../components/UI'
 
-import { TicketsList } from './components'
-import CurrencyToggle from './components/CurrencyToggle'
+import CurrencyToggle from './components/filter/CurrencyToggle'
+import { TicketsList } from './components/tickets'
 import { useView } from './hooks'
 
 export const TicketsSearch = () => {

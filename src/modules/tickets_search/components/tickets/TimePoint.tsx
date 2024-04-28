@@ -1,6 +1,6 @@
 import moment from 'moment'
 
-import { cn } from '../../../utils/libs'
+import { cn } from '../../../../utils/libs'
 
 interface TimePointProps {
     time: string

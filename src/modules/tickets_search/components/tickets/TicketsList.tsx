@@ -1,4 +1,4 @@
-import { FlightTicket } from '../types'
+import { FlightTicket } from '../../types'
 
 import TicketElement from './TicketElement'
 

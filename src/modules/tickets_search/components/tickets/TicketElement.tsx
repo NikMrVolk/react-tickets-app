@@ -1,6 +1,6 @@
-import { Button, Dashboard } from '../../../components/UI'
-import { morphRuEndings } from '../../../utils/helpers'
-import { FlightTicket } from '../types'
+import { Button, Dashboard } from '../../../../components/UI'
+import { morphRuEndings } from '../../../../utils/helpers'
+import { FlightTicket } from '../../types'
 
 import TimePoint from './TimePoint'
 

@@ -1,7 +1,7 @@
-import { Button } from '../../../components/UI'
-import { cn } from '../../../utils/libs'
-import { TICKETS_CURRENCIES } from '../constants'
-import { Currency } from '../types'
+import { Button } from '../../../../components/UI'
+import { cn } from '../../../../utils/libs'
+import { TICKETS_CURRENCIES } from '../../constants'
+import { Currency } from '../../types'
 
 interface CurrencyToggleProps {
     currentCurrency: Currency
