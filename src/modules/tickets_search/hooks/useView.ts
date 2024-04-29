@@ -6,12 +6,12 @@ import { Currency, FlightTicket, StopValue } from '../types'
 
 export const useView = () => {
     const [data, setData] = useState<FlightTicket[]>([])
-    const [currentCurrency, setCurrentCurrency] = useState<Currency>(TICKETS_CURRENCIES[0])
+    const [currency, setCurrency] = useState<Currency>(TICKETS_CURRENCIES[0])
     const [stops, setStops] = useState<StopValue[]>([])
     const [checkedStops, setCheckedStops] = useState<StopValue[]>([])
 
-    const handleChangeCurrentCurrency = (currency: Currency) => {
-        setCurrentCurrency(currency)
+    const handleChangeCurrency = (currency: Currency) => {
+        setCurrency(currency)
     }
 
     const handleTurnStop = (stop: StopValue) => {
@@ -45,12 +45,12 @@ export const useView = () => {
     return {
         state: {
             tickets: data,
-            currentCurrency,
+            currency,
             checkedStops,
             stops,
         },
         functions: {
-            changeCurrentCurrency: handleChangeCurrentCurrency,
+            changeCurrency: handleChangeCurrency,
             turnStop: handleTurnStop,
             turnOnlyOneStop: handleTurnOnlyOneStop,
         },

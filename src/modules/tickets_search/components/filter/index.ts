@@ -1,3 +1,3 @@
-export * from './CurrencyToggle'
+export * from './ToggleButtons'
 export * from './FilterWrapperElement'
 export * from './Filters'

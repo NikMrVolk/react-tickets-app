@@ -1,23 +1,24 @@
 import { Dashboard } from '../../../../components/UI'
+import { TICKETS_CURRENCIES } from '../../constants'
 import { Currency, StopValue } from '../../types'
 
 import { CheckElement } from './checkbox'
-import CurrencyToggle from './CurrencyToggle'
 import FilterWrapperElement from './FilterWrapperElement'
+import CurrencyToggle from './ToggleButtons'
 
 interface FiltersProps {
     stops: StopValue[]
     checkedStops: StopValue[]
     turnStop: (stop: StopValue) => void
     turnOnlyOneStop: (stop: StopValue) => void
-    currentCurrency: Currency
-    changeCurrentCurrency: (currency: Currency) => void
+    currency: Currency
+    changeCurrency: (currency: Currency) => void
     children?: React.ReactNode
 }
 
 export default function Filters({
-    currentCurrency,
-    changeCurrentCurrency,
+    currency,
+    changeCurrency,
     stops,
     checkedStops,
     turnStop,
@@ -26,7 +27,7 @@ export default function Filters({
     return (
         <Dashboard className="flex h-fit flex-col gap-10">
             <FilterWrapperElement title="ВАЛЮТА">
-                <CurrencyToggle currentCurrency={currentCurrency} changeCurrency={changeCurrentCurrency} />
+                <CurrencyToggle elements={TICKETS_CURRENCIES} currentValue={currency} changeValue={changeCurrency} />
             </FilterWrapperElement>
             <FilterWrapperElement title="КОЛИЧЕСТВО ПЕРЕСАДОК">
                 {stops.map(el => (
