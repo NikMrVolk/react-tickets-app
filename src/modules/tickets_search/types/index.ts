@@ -19,3 +19,9 @@ export type StopValue = FlightTicket['stops'] | typeof STOP_DEFAULT
 export type PriceOrderValue = 'По возрастанию' | 'По убыванию'
 
 export type ToggleElementsKeys = 'currency' | 'price'
+
+export type ReplacePropertyType<T, K extends keyof T, U> = {
+    [P in keyof T]: P extends K ? U : T[P]
+}
+
+export type FlightTicketWithFormattedPrice = ReplacePropertyType<FlightTicket, 'price', string>

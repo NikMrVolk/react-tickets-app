@@ -1,17 +1,17 @@
 import { Button, Dashboard } from '../../../../components/UI'
 import { morphRuEndings } from '../../../../utils/helpers'
-import { FlightTicket } from '../../types'
+import { FlightTicketWithFormattedPrice } from '../../types'
 
 import TimePoint from './TimePoint'
 
-export default function TicketElement({ ticket }: { ticket: FlightTicket }) {
+export default function TicketElement({ ticket }: { ticket: FlightTicketWithFormattedPrice }) {
     return (
         <li className="grid grid-cols-ticketElement gap-0.25">
             <Dashboard Component="div" className="flex flex-col items-center gap-4 rounded-r-none">
                 <img src="/images/TALogo.png" alt="Turkish Airlines" draggable="false" />
                 <Button className="max-w-48">
                     Купить <br />
-                    за <span className="text-xl">{ticket.price}₽</span>
+                    за <span className="text-xl">{ticket.price}</span>
                 </Button>
             </Dashboard>
             <Dashboard Component="div" className="relative flex justify-between rounded-l-none">

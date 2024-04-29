@@ -1,9 +1,9 @@
-import { FlightTicket } from '../../types'
+import { FlightTicketWithFormattedPrice } from '../../types'
 
 import TicketElement from './TicketElement'
 
 interface TicketsListProps {
-    tickets?: FlightTicket[]
+    tickets: FlightTicketWithFormattedPrice[]
 }
 
 export const TicketsList = ({ tickets }: TicketsListProps) => (
