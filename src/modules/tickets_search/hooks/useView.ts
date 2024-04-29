@@ -1,46 +1,22 @@
 import { useEffect, useState } from 'react'
 
-import { STOP_DEFAULT, tickets, TICKETS_CURRENCIES } from '../constants'
-import { getUniqueValues } from '../helpers'
-import { Currency, FlightTicket, StopValue } from '../types'
+import { tickets, TICKETS_CURRENCIES } from '../constants'
+import { Currency, FlightTicket } from '../types'
+
+import { useStops } from './filters/useStops'
 
 export const useView = () => {
     const [data, setData] = useState<FlightTicket[]>([])
     const [currency, setCurrency] = useState<Currency>(TICKETS_CURRENCIES[0])
-    const [stops, setStops] = useState<StopValue[]>([])
-    const [checkedStops, setCheckedStops] = useState<StopValue[]>([])
+    const { stops, checkedStops, turnStop, turnOnlyOneStop } = useStops(data)
 
     const handleChangeCurrency = (currency: Currency) => {
         setCurrency(currency)
     }
 
-    const handleTurnStop = (stop: StopValue) => {
-        if (checkedStops.includes(stop)) {
-            // prevent turn off last element
-            if (checkedStops.length === 1 && checkedStops[0] === stop) {
-                setCheckedStops([STOP_DEFAULT])
-            } else {
-                setCheckedStops(checkedStops.filter(el => el !== stop))
-            }
-        } else {
-            setCheckedStops([...checkedStops, stop].filter(el => el !== STOP_DEFAULT))
-        }
-    }
-
-    const handleTurnOnlyOneStop = (stop: StopValue): void => {
-        setCheckedStops([stop])
-    }
-
     useEffect(() => {
         setData([...tickets].sort((a, b) => a.price - b.price))
     }, [])
-
-    useEffect(() => {
-        if (data.length) {
-            setStops([STOP_DEFAULT, ...getUniqueValues(data, 'stops')])
-            setCheckedStops([STOP_DEFAULT])
-        }
-    }, [data])
 
     return {
         state: {
@@ -51,8 +27,8 @@ export const useView = () => {
         },
         functions: {
             changeCurrency: handleChangeCurrency,
-            turnStop: handleTurnStop,
-            turnOnlyOneStop: handleTurnOnlyOneStop,
+            turnStop,
+            turnOnlyOneStop,
         },
     }
 }
