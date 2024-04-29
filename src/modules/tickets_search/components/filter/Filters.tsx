@@ -1,24 +1,27 @@
 import { Dashboard } from '../../../../components/UI'
-import { TICKETS_CURRENCIES } from '../../constants'
-import { Currency, StopValue } from '../../types'
+import { TICKETS_CURRENCIES, TICKETS_PRICE_ORDERS } from '../../constants'
+import { Currency, PriceOrderValue, StopValue, ToggleElementsKeys } from '../../types'
 
 import { CheckElement } from './checkbox'
 import FilterWrapperElement from './FilterWrapperElement'
-import CurrencyToggle from './ToggleButtons'
+import ToggleButtons from './ToggleButtons'
 
 interface FiltersProps {
+    toggleStates: {
+        currency: Currency
+        price: PriceOrderValue
+    }
     stops: StopValue[]
     checkedStops: StopValue[]
     turnStop: (stop: StopValue) => void
     turnOnlyOneStop: (stop: StopValue) => void
-    currency: Currency
-    changeCurrency: (currency: Currency) => void
+    changeToggle: <T>(currency: T, key: ToggleElementsKeys) => void
     children?: React.ReactNode
 }
 
 export default function Filters({
-    currency,
-    changeCurrency,
+    toggleStates,
+    changeToggle,
     stops,
     checkedStops,
     turnStop,
@@ -27,7 +30,12 @@ export default function Filters({
     return (
         <Dashboard className="flex h-fit flex-col gap-10">
             <FilterWrapperElement title="ВАЛЮТА">
-                <CurrencyToggle elements={TICKETS_CURRENCIES} currentValue={currency} changeValue={changeCurrency} />
+                <ToggleButtons
+                    elements={TICKETS_CURRENCIES}
+                    currentValue={toggleStates.currency}
+                    changeValue={changeToggle}
+                    changeValueKey="currency"
+                />
             </FilterWrapperElement>
             <FilterWrapperElement title="КОЛИЧЕСТВО ПЕРЕСАДОК">
                 {stops.map(el => (
@@ -39,6 +47,14 @@ export default function Filters({
                         turnOnlyOneStop={turnOnlyOneStop}
                     />
                 ))}
+            </FilterWrapperElement>
+            <FilterWrapperElement title="ЦЕНА">
+                <ToggleButtons
+                    elements={TICKETS_PRICE_ORDERS}
+                    currentValue={toggleStates.price}
+                    changeValue={changeToggle}
+                    changeValueKey="price"
+                />
             </FilterWrapperElement>
         </Dashboard>
     )

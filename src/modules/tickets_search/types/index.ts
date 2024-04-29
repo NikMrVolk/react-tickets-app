@@ -16,3 +16,6 @@ export interface FlightTicket {
 
 export type Currency = 'RUB' | 'USD' | 'EUR'
 export type StopValue = FlightTicket['stops'] | typeof STOP_DEFAULT
+export type PriceOrderValue = 'По возрастанию' | 'По убыванию'
+
+export type ToggleElementsKeys = 'currency' | 'price'

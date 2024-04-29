@@ -4,15 +4,15 @@ import { useView } from './hooks'
 
 export const TicketsSearch = () => {
     const {
-        state: { tickets, currency, stops, checkedStops },
-        functions: { changeCurrency, turnStop, turnOnlyOneStop },
+        state: { tickets, stops, checkedStops, toggleStates },
+        functions: { turnStop, turnOnlyOneStop, changeToggle },
     } = useView()
 
     return (
         <div className="grid grid-cols-ticketsSearch gap-16">
             <Filters
-                currency={currency}
-                changeCurrency={changeCurrency}
+                toggleStates={toggleStates}
+                changeToggle={changeToggle}
                 stops={stops}
                 checkedStops={checkedStops}
                 turnStop={turnStop}
