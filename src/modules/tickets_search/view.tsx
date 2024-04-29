@@ -4,8 +4,8 @@ import { useView } from './hooks'
 
 export const TicketsSearch = () => {
     const {
-        state: { tickets, stops, checkedStops, toggleStates },
-        functions: { turnStop, turnOnlyOneStop, changeToggle },
+        state: { tickets, toggleStates, stopStates },
+        functions: { changeToggle, stopFns },
     } = useView()
 
     return (
@@ -13,10 +13,8 @@ export const TicketsSearch = () => {
             <Filters
                 toggleStates={toggleStates}
                 changeToggle={changeToggle}
-                stops={stops}
-                checkedStops={checkedStops}
-                turnStop={turnStop}
-                turnOnlyOneStop={turnOnlyOneStop}
+                stopStates={stopStates}
+                stopFns={stopFns}
             />
             <TicketsList tickets={tickets} />
         </div>

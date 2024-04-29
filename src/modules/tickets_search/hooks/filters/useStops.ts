@@ -33,9 +33,13 @@ export const useStops = (tickets: FlightTicket[]) => {
     }, [tickets])
 
     return {
-        stops,
-        checkedStops,
-        turnStop: handleTurnStop,
-        turnOnlyOneStop: handleTurnOnlyOneStop,
+        stopStates: {
+            stops,
+            checkedStops,
+        },
+        stopFns: {
+            turnStop: handleTurnStop,
+            turnOnlyOneStop: handleTurnOnlyOneStop,
+        },
     }
 }

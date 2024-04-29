@@ -9,7 +9,7 @@ import { useToggle } from './filters/useToggle'
 export const useView = () => {
     const [data, setData] = useState<FlightTicket[]>([])
     const { toggleStates, changeToggle } = useToggle()
-    const { stops, checkedStops, turnStop, turnOnlyOneStop } = useStops(data)
+    const { stopStates, stopFns } = useStops(data)
 
     useEffect(() => {
         setData([...tickets].sort((a, b) => a.price - b.price))
@@ -18,14 +18,12 @@ export const useView = () => {
     return {
         state: {
             tickets: data,
-            checkedStops,
-            stops,
             toggleStates,
+            stopStates,
         },
         functions: {
             changeToggle,
-            turnStop,
-            turnOnlyOneStop,
+            stopFns,
         },
     }
 }

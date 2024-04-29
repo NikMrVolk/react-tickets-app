@@ -11,22 +11,19 @@ interface FiltersProps {
         currency: Currency
         price: PriceOrderValue
     }
-    stops: StopValue[]
-    checkedStops: StopValue[]
-    turnStop: (stop: StopValue) => void
-    turnOnlyOneStop: (stop: StopValue) => void
     changeToggle: <T>(currency: T, key: ToggleElementsKeys) => void
+    stopStates: {
+        stops: StopValue[]
+        checkedStops: StopValue[]
+    }
+    stopFns: {
+        turnStop: (stop: StopValue) => void
+        turnOnlyOneStop: (stop: StopValue) => void
+    }
     children?: React.ReactNode
 }
 
-export default function Filters({
-    toggleStates,
-    changeToggle,
-    stops,
-    checkedStops,
-    turnStop,
-    turnOnlyOneStop,
-}: FiltersProps) {
+export default function Filters({ toggleStates, changeToggle, stopStates, stopFns }: FiltersProps) {
     return (
         <Dashboard className="flex h-fit flex-col gap-10">
             <FilterWrapperElement title="ВАЛЮТА">
@@ -38,13 +35,13 @@ export default function Filters({
                 />
             </FilterWrapperElement>
             <FilterWrapperElement title="КОЛИЧЕСТВО ПЕРЕСАДОК">
-                {stops.map(el => (
+                {stopStates.stops.map(el => (
                     <CheckElement
                         key={el}
                         value={el}
-                        isChecked={checkedStops.includes(el)}
-                        turnStop={turnStop}
-                        turnOnlyOneStop={turnOnlyOneStop}
+                        isChecked={stopStates.checkedStops.includes(el)}
+                        turnStop={stopFns.turnStop}
+                        turnOnlyOneStop={stopFns.turnOnlyOneStop}
                     />
                 ))}
             </FilterWrapperElement>
