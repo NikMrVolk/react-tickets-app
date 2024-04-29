@@ -1,3 +1,5 @@
+import { STOP_DEFAULT } from '../constants'
+
 export interface FlightTicket {
     origin: string
     origin_name: string
@@ -13,4 +15,4 @@ export interface FlightTicket {
 }
 
 export type Currency = 'RUB' | 'USD' | 'EUR'
-export type StopValue = FlightTicket['stops'] | 'all'
+export type StopValue = FlightTicket['stops'] | typeof STOP_DEFAULT

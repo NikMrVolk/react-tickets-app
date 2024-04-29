@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 
-import { tickets, TICKETS_CURRENCIES } from '../constants'
+import { STOP_DEFAULT, tickets, TICKETS_CURRENCIES } from '../constants'
 import { getUniqueValues } from '../helpers'
 import { Currency, FlightTicket, StopValue } from '../types'
 
@@ -8,14 +8,27 @@ export const useView = () => {
     const [data, setData] = useState<FlightTicket[]>([])
     const [currentCurrency, setCurrentCurrency] = useState<Currency>(TICKETS_CURRENCIES[0])
     const [stops, setStops] = useState<StopValue[]>([])
-
-    // todo add filter
-    const handleFilterTickets = () => {
-        setData(tickets)
-    }
+    const [checkedStops, setCheckedStops] = useState<StopValue[]>([])
 
     const handleChangeCurrentCurrency = (currency: Currency) => {
         setCurrentCurrency(currency)
+    }
+
+    const handleTurnStop = (stop: StopValue) => {
+        if (checkedStops.includes(stop)) {
+            // prevent turn off last element
+            if (checkedStops.length === 1 && checkedStops[0] === stop) {
+                setCheckedStops([STOP_DEFAULT])
+            } else {
+                setCheckedStops(checkedStops.filter(el => el !== stop))
+            }
+        } else {
+            setCheckedStops([...checkedStops, stop].filter(el => el !== STOP_DEFAULT))
+        }
+    }
+
+    const handleTurnOnlyOneStop = (stop: StopValue): void => {
+        setCheckedStops([stop])
     }
 
     useEffect(() => {
@@ -24,7 +37,8 @@ export const useView = () => {
 
     useEffect(() => {
         if (data.length) {
-            setStops(['all', ...getUniqueValues(data, 'stops')])
+            setStops([STOP_DEFAULT, ...getUniqueValues(data, 'stops')])
+            setCheckedStops([STOP_DEFAULT])
         }
     }, [data])
 
@@ -32,11 +46,13 @@ export const useView = () => {
         state: {
             tickets: data,
             currentCurrency,
+            checkedStops,
             stops,
         },
         functions: {
-            filterTickets: handleFilterTickets,
             changeCurrentCurrency: handleChangeCurrentCurrency,
+            turnStop: handleTurnStop,
+            turnOnlyOneStop: handleTurnOnlyOneStop,
         },
     }
 }
