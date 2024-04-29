@@ -13,3 +13,4 @@ export interface FlightTicket {
 }
 
 export type Currency = 'RUB' | 'USD' | 'EUR'
+export type StopValue = FlightTicket['stops'] | 'all'
